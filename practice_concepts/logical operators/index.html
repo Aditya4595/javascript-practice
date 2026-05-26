@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Branching</title>
+</head>
+<body>
+    <h1>Conditional Branching</h1>
+    <p>check the console</p>
+    <script>
+        /*// Logical OR (||) operator example:
+
+        let hour = 11; // Example hour
+       if (hour < 10 || hour > 18) {
+            alert("Office closed");
+            }
+            else{
+                alert("Office open");
+            }*/
+
+            /*// Logical AND (&&) operator example:
+
+            let age = prompt("Enter your age:");// Example age
+            if (age >= 18 && age <= 30) {
+                alert("You are eligible for the youth program.");
+            } else {
+                alert("You are not eligible for the youth program.");
+            }*/
+
+            /*// Logical NOT (!) operator example:
+
+            let isRaining = prompt("Is it raining? (true/false): "); // Example weather condition
+            if (!isRaining) {
+                alert("You can go outside without an umbrella.");
+            } else {
+                alert("You should take an umbrella.");
+            }*/
+
+           let userName = prompt("Who's there?", '');
+
+if (userName === 'Admin') {
+
+  let pass = prompt('Password?', '');
+
+  if (pass === 'TheMaster') {
+    alert( 'Welcome my lord!' );
+  } else if (pass === '' || pass === null) {
+    alert( 'Canceled' );
+  } else {
+    alert( 'Wrong password' );
+  }
+
+} else if (userName === '' || userName === null) {
+  alert( 'Canceled' );
+} else {
+  alert( "I don't know you" );
+}
+            
+
+    </script>
+</html>
