@@ -49,7 +49,9 @@
         console.log(personalInfo.city); // Output: mumbai
         console.log(personalInfo.job); // Output: developer
         console.log(personalInfo.company); // Output: google
+        
         console.log(personalInfo["is this a student"]); // Output: true
+        
         personalInfo.cgpa = 9.5; //adding a new property to the object
         console.log(personalInfo.cgpa); // Output: 9.5
 
@@ -92,7 +94,47 @@
         }
 
         delete user.age; //deleting the age property from user object
-        console.log(user.age); // Output: undefined, age property has been deleted from user object */    
-    </script>
+        console.log(user.age); // Output: undefined, age property has been deleted from user object 
+        
+        //copying an object 
+        
+        let user = {
+        name: "John"
+        };
+        
+        let admin = user;
+        
+        admin.age = 30; //adding a new property age to admin object, which also adds the age property to user object because both admin and user are referencing the same object in memory
+        admin.name = "Peter"; //changing the name property of admin object, which also changes the name property of user object because both admin and user are referencing the same object in memory
+        
+        console.log(user.name); // Output: Peter
+        
+        for (let key in user) {
+            console.log(key + " : " + user[key]); // Output: name: Peter, age: 30
+        }
+
+        //copying with const keyword
+
+        const student = {
+            name: "Aditya Bhanushali",
+            age: 21,
+            city: "Mumbai"
+            };
+
+            student.name = "gobra";//modifying the name property of student object, which is allowed because const only protects the reference of the object student, we can still modify the properties of the object student, but we cannot reassign the student variable to a new object or value.
+        for (let key in student) {
+            console.log(key + ": " + student[key]); // Output: name: Aditya Bhanushali, age: 21, city: Mumbai
+        } // here const only protects the reference of the object student, we can still modify the properties of the object student, but we cannot reassign the student variable to a new object or value.
+        
+        let student2 = student; // student2 is referencing the same object as student
+        for (let key in student2) {
+            console.log(key + ": " + student2[key]); // Output: name: Aditya Bhanushali, age: 21, city: Mumbai
+        }*/
+
+        
+
+
+        
+</script>
 </body>
 </html>
