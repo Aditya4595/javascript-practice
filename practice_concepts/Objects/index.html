@@ -129,10 +129,122 @@
         let student2 = student; // student2 is referencing the same object as student
         for (let key in student2) {
             console.log(key + ": " + student2[key]); // Output: name: Aditya Bhanushali, age: 21, city: Mumbai
-        }*/
+        }
+
+        //cloning an object
+
+        //method 1: using for...in loop to copy the properties of an object to a new object
+
+            let user = {name:"john",age :20};
+
+            let clone = {}; //creating an empty object to hold the cloned properties of user object
+
+            for (let key in user){
+                clone[key] = user[key]; //copying the properties of user object to clone object
+            }
+        console.log(clone); // Output: {name: "john", age: 20}
+
+        //method 2: using Object.assign() method to copy the properties of an object to a new object
+
+        let user = {name:"john",age :20};
+
+        let clone = Object.assign({}, user); //creating a new object and copying the properties of user object to it using Object.assign() method
+       
+        console.log(clone); // Output: {name: "john", age: 20}
+
+        //method 3: using spread operator to copy the properties of an object to a new object
+
+        let user = {name:"john",age :20};
+        let clone = {...user}; //creating a new object and copying the properties of user object to it using spread operator
+        console.log(clone); // Output: {name: "john", age: 20}
+
+        //Merging objects
+
+        let user = {name:"john",age :20};
+        let admin = {admin:true};  
+
+        let merged = Object.assign({}, user, admin); //creating a new object and merging the properties of user and admin objects to it using Object.assign() method
+        console.log(merged); // Output: {name: "john", age: 20, admin: true}
+        
+        let merged2 = {...user, ...admin}; //creating a new object and merging the properties of user and admin objects to it using spread operator
+        console.log(merged2);
+
+        let user = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+
+        let userRole = {
+            role : "admin",
+        };
+
+        let classroom = Object.assign({}, user, userRole); //creating a new object and merging the properties of user and userRole objects to it using Object.assign() method
+        console.log(classroom); // Output : {name: "John", age: 30, city: "New York", role: "admin"}
+
+        //shallow and deep cloning of objects
+
+        let user = {
+            name : "John",
+            age : 30,
+
+            sizes :{
+                height : 180,
+                width : 50
+            }
+        };
+        
+        let clone = Object.assign({}, user); //shallow cloning
+
+        console.log(user.sizes === clone.sizes); // Output: true, because both user and clone are referencing the same sizes object in memory
+        
+        user.sizes.height = 190; //modifying the height property of sizes object in user object, which also modifies the height property of sizes object in clone object because both user and clone are referencing the same sizes object in memory
+        console.log(clone.sizes.height); // Output: 190, because both user and clone are referencing the same sizes object in memory
+        
+        //this is called shallow copying because only the first level of properties are copied, and the nested objects are still referencing the same object in memory.it copied only name,age,sizes properties of user object to clone object, but it only has the reference of the sizes object, not the actual sizes object itself.
+
+        //deep cloning of objects
+
+        let user = {
+            name : "John",
+            age : 30,
+
+            sizes :{
+                height : 180,
+                width : 50
+            }
+        };
+        
+        let clone = structuredClone(user); //deep cloning
+        console.log(user.sizes === clone.sizes); // Output: false, because user and clone are referencing different sizes objects in memory
+
+        user.sizes.height = 190; //modifying the height property of sizes object in user object, which does not modify the height property of sizes object in clone object because user and clone are referencing different sizes objects in memory
+        console.log(clone.sizes.height); // Output: 180, because user and clone are referencing different sizes objects in memory
+
+        //another way to deep clone an object is to use JSON.parse() and JSON.stringify() methods, but this method has some limitations, such as it does not work with functions, undefined, and symbols.
+
+         let user = {
+            name : "John",
+            age : 30,
+
+            sizes :{
+                height : 180,
+                width : 50
+            }
+        };
+        let clone = JSON.parse(JSON.stringify(user)); //deep cloning using JSON methods
+        console.log(user.sizes === clone.sizes); // Output: false, because user and clone are referencing different sizes objects in memory
+
+        user.sizes.height = 190; //modifying the height property of sizes object in user object, which does not modify the height property of sizes object in clone object because user and clone are referencing different sizes objects in memory
+        console.log(clone.sizes.height); // Output: 180, because user and clone are referencing different sizes objects in memory
+
+        //JSON.parse() method converts a JSON string into a JavaScript object, and JSON.stringify() method converts a JavaScript object into a JSON string. By using these two methods together, we can create a deep clone of an object, but it has some limitations as mentioned above.
+
+        // this is called deep copying because both user and clone are referencing different objects in memory.*/
 
         
 
+        
 
         
 </script>
