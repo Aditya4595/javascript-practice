@@ -9,6 +9,9 @@
 <body>
     <h1>Objects</h1>
     <script>
+        "use strict";
+
+        //objects:
         // Objects are a collection of key-value pairs
         // They are used to store data in a structured way
 
@@ -252,10 +255,200 @@
         let clone = structuredClone(user); //deep cloning user object to clone object
         console.log(clone.me === clone); // Output: true, because clone.me is referencing the clone object itself, which is a circular reference
         console.log(clone.me === user); // Output: false, because clone.me is referencing the clone object itself, not the user object
-        console.log(clone.me === user.me); // Output: false, because clone.me is referencing the clone object itself, not the user object, and user.me is referencing the user object itself, not the clone object*/
+        console.log(clone.me === user.me); // Output: false, because clone.me is referencing the clone object itself, not the user object, and user.me is referencing the user object itself, not the clone object
+    
+     //structuredClone() method is a built-in method in JavaScript that creates a deep clone of an object, including all nested objects and properties. It handles circular references and other complex data types like Map, Set, Date, RegExp, etc. It is the recommended way to deep clone an object in modern JavaScript.
+
+     //================================================ object methods =========================================================//
+
+    //object 1)."this" keyword in object methods: The "this" keyword refers to the object that is calling the method. It allows us to access the properties and methods of the object within the method.(this means current object)
+
+    let user = {
+        name: "John",
+        age: 30
+        };
+
+        user.sayHi = function() {//adding a method to user object
+        alert("Hello!");
+        };
+
+        user.sayHi();// Output: Hello!, calling the sayHi method of user object
+
+    //creating the function first
+
+       function sayHi() {
+        alert("hello");
+       }
+
+       let user ={
+        name : "John",
+        age : 30,
+        sayHi : sayHi //adding the sayHi function as a method to user object
+       }
+       console.log(user.sayHi()); // Output: hello, calling the sayHi function 
+
+    //short hand property name syntax for"this" keyword in object methods 
+
+    let user ={
+        name : "John",
+        age : 30,
+        sayHi() { //short hand method syntax
+            alert("hello" + " " +this.name); //using "this" keyword to access the name property of user object
+        }
+    }
+    console.log(user.sayHi()); 
+
+    // biggest problem with this keywoard
+
+    let user = {
+    name: "John",
+
+    sayHi() {
+    alert(user.name);
+        }
+    };
+
+    user.sayHi(); 
+
+    let admin = user;
+        user = null;
+
+        admin.sayHi();
+
+    // we caught a error beacuse in the above user object inside function user.name is used instead of this.name, so when user object is set to null, it throws an error because user is no longer defined. To fix this, we should use this.name instead of user.name inside the sayHi method.
+
+    let user = {
+    name: "John",
+
+    sayHi() {
+    alert(this.name);
+        }
+    };
+
+     let admin = user;
+     
+        user = null;
+
+        admin.sayHi(); 
+    
+    // Output: John, because "this" keyword refers to the object that is calling the method, which is admin object in this case, and admin object has a name property with value "John".
+        
+    // another problem with this keywoard is this is not fixed, it depends on how the function is called. If the function is called as a method of an object, then "this" refers to that object. If the function is called as a standalone function, then "this" refers to the global object (window in browsers). This can lead to unexpected behavior and bugs in the code. 
+    //it is decided at runtime. 
+
+    function sayHi() {
+        alert(this.name);
+    }
+
+    let user = { name: "John" };
+    let admin = { name: "Admin" };
+
+    user.f = sayHi;
+    admin.f = sayHi;
+
+    user.f(); // Output: John, because "this" refers to the user object that is calling the f method
+    admin.f(); // Output: Admin, because "this" refers to the admin object that is calling the f method
+
+    // this call ke time decide hota he. matlab ki function ko kis object ke sath call kiya ja raha he, uske hisab se this ka value decide hota he.
+        
+    // Arrow function and this keyword: Arrow functions do not have their own "this" value. Instead, they inherit "this" from the surrounding lexical context. This means that the value of "this" inside an arrow function is determined by where the function is defined, not how it is called.
+
+    let user = {
+        name: "John",
+        age: 30,
+     
+        sayHi() {
+            let arrow = () => alert(this.name); //arrow function inherits "this" from sayHi method, which refers to user object
+            arrow();
+        }   
+    };
+
+    user.sayHi(); // Output: John, because "this" inside the arrow function refers to the user object that is calling the sayHi method
+    
+    //yaha pe arrow function ke andar this ka value sayHi method ke this ka value se inherit hota he, jo ki user object ko refer karta he. isliye arrow function ke andar this.name ka value John hota he.
+
+//direct call of arrow function without any object context
+
+ let arrow = function() {
+   alert(this.name);
+  }
+
+  arrow(); // Output: undefined, because "this" inside the arrow function refers to the global object (window in browsers), which does not have a name property 
+
+  // tough problem which i faced :
+  
+  function makeUser() {
+  return {
+    name: "John",
+    ref() {
+      return this;
+    }
+  };
+}
+
+let user = makeUser();
+
+console.log(user.ref().name);
+
+// user.ref() call hota he, to ref method ke andar this ka value user object ko refer karta he.
+// isliye user.ref() returns the user object and user.ref().name gives "John".
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this;
+  },
+  down() {
+    this.step--;
+    return this;
+  },
+  showStep() {
+    alert( this.step );
+    return this;
+  }
+};
+
+ladder.up().up().showStep().down().showStep().down().showStep().down().showStep(); // Output: 2, 1, 0, -1
+//ladder object ke methods up, down, and showStep return this, which allows method chaining.
+
+let calculator = {
+  sum() {
+    return this.a + this.b;
+  },
+
+  mul() {
+    return this.a * this.b;
+  },
+
+  read() {
+    this.a = +prompt('a?', 0);
+    this.b = +prompt('b?', 0);
+  }
+};
+
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+//calculator object has methods sum, mul, and read. The read method prompts the user for two numbers and assigns them to the properties a and b of the calculator object. 
+*/
+
+//====================================constructor, operator new ==================================//
+
+
+
+        
+
+
+
+
+
+
 
         
         
+
 </script>
 </body>
 </html>
