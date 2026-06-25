@@ -432,13 +432,96 @@ alert( calculator.sum() );
 alert( calculator.mul() );
 
 //calculator object has methods sum, mul, and read. The read method prompts the user for two numbers and assigns them to the properties a and b of the calculator object. 
-*/
+
+
 
 //====================================constructor, operator new ==================================//
 
+//constructor function is a function that is used to create objects. 
+// It is called with the new operator, which creates a new object and sets the this value to that object. The constructor function can have properties and methods that are assigned to the new object.
+//it is normal function which is written with the first letter capitalized, to indicate that it is a constructor function.
+
+//follow the 2 rules for constructor function:
+
+//1. The function name should start with a capital letter.
+//2. The function should be called with the "new" operator.
+
+function User(name){
+    this.name = name;
+    this.isAdmin = false;
+}
+
+let user = new User("John");
+console.log(user.name); // Output: John
+
+let user2 = new User("andhya baba");
+console.log(user2.name); // Output: andhya baba
+
+//when js sees the new operator, it does the following steps:
+//1. A new empty object is created and assigned to this.
+//2.Makes this point to that object.
+//3. The function body executes, modifying this and adding properties to it.
+//4. The object is returned from the function, unless the function returns a non-primitive value explicitly.
+
+//visualization of the above steps:
+
+/*new User("Jack")
+
+Step 1 → {}
+Step 2 → this points to {}
+Step 3 → fill properties
+Step 4 → return object
+*/
 
 
-        
+//we can not use this with arrow functions, because arrow functions do not have their own this value. 
+// Instead, they inherit this from the surrounding lexical context. 
+// This means that the value of this inside an arrow function is determined by where the function is defined, not how it is called.
+
+//constructors also add methods to the object: 
+/*
+function User(name){
+    this.name = name;
+    this.sayHi = function(){
+        alert("My name is " + this.name);
+    }
+}
+
+let user = new User("andhya laudeya");
+    user.sayHi(); // Output: My name is andhya laudeya 
+
+    //using new.target to check if a function is called with new operator or not
+
+    function User(name){
+        if(!new.target) { //if new.target is undefined, then the function is called without new operator
+            return new User(name); //call the function again with new operator
+        }
+        this.name = name;
+    }
+  
+    let john = new User("John"); //with new operator
+    console.log(john.name); // Output: John
+
+    let aditya = User("Aditya"); //without new operator
+    console.log(aditya.name); // Output: Aditya
+
+    //new.target is a special property that is available inside a function. 
+    // It allows us to check if the function was called with the new operator or not. 
+    // If the function was called with new, new.target will be equal to the function itself.
+    // If the function was called without new, new.target will be undefined. 
+    // This can be useful for creating constructor functions that can be called with or without new.
+*/
+ //return in constructor function:
+ 
+ //......
+
+
+
+    
+
+
+
+
 
 
 
