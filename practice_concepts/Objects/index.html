@@ -510,11 +510,19 @@ let user = new User("andhya laudeya");
     // If the function was called with new, new.target will be equal to the function itself.
     // If the function was called without new, new.target will be undefined. 
     // This can be useful for creating constructor functions that can be called with or without new.
-*/
+
  //return in constructor function:
  
- //......
+ function BigUser() {
+  this.name = "John";
 
+  return { name: "Godzilla" };
+}
+
+let bigUser = new BigUser();
+console.log(bigUser.name); // Output: Godzilla, because the constructor function returned an object, which overrides the this value and becomes the new object that is returned from the constructor function.
+
+*/
 
 
     
