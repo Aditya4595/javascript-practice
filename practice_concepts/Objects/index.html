@@ -240,12 +240,21 @@
 
         //JSON.parse() method converts a JSON string into a JavaScript object, and JSON.stringify() method converts a JavaScript object into a JSON string. By using these two methods together, we can create a deep clone of an object, but it has some limitations as mentioned above.
 
-        // this is called deep copying because both user and clone are referencing different objects in memory.*/
+        // this is called deep copying because both user and clone are referencing different objects in memory.
+
+
+        //it handles circular references and other complex data types like Map, Set, Date, RegExp, etc. It is the recommended way to deep clone an object in modern JavaScript.
+
+        let user ={};
+
+        user.me = user; //creating a circular reference, where the me property of user object is referencing the user object itself
+
+        let clone = structuredClone(user); //deep cloning user object to clone object
+        console.log(clone.me === clone); // Output: true, because clone.me is referencing the clone object itself, which is a circular reference
+        console.log(clone.me === user); // Output: false, because clone.me is referencing the clone object itself, not the user object
+        console.log(clone.me === user.me); // Output: false, because clone.me is referencing the clone object itself, not the user object, and user.me is referencing the user object itself, not the clone object*/
 
         
-
-        
-
         
 </script>
 </body>
