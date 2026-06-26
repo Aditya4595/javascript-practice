@@ -473,7 +473,6 @@ Step 3 → fill properties
 Step 4 → return object
 */
 
-
 //we can not use this with arrow functions, because arrow functions do not have their own this value. 
 // Instead, they inherit this from the surrounding lexical context. 
 // This means that the value of this inside an arrow function is determined by where the function is defined, not how it is called.
@@ -490,7 +489,7 @@ function User(name){
 let user = new User("andhya laudeya");
     user.sayHi(); // Output: My name is andhya laudeya 
 
-    //using new.target to check if a function is called with new operator or not
+//using new.target to check if a function is called with new operator or not(this is advance topic):
 
     function User(name){
         if(!new.target) { //if new.target is undefined, then the function is called without new operator
@@ -522,10 +521,125 @@ let user = new User("andhya laudeya");
 let bigUser = new BigUser();
 console.log(bigUser.name); // Output: Godzilla, because the constructor function returned an object, which overrides the this value and becomes the new object that is returned from the constructor function.
 
-*/
+//creating calculator object using constructor function:
+
+function Calculator() {
+
+  this.read = function() {
+    this.a = +prompt('a?', 0);
+    this.b = +prompt('b?', 0);
+  };
+
+  this.sum = function() {
+    return this.a + this.b;
+  };
+
+  this.mul = function() {
+    return this.a * this.b;
+  };
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );  
+
+//creating accumulator object using constructor function:
+
+function Accumulator(startingValue){
+    this.value = startingValue;
+
+    this.read = function(){
+        this.value += +prompt('how much to add?', 0);
+    };
+}
+
+let accumulator = new Accumulator(1);
+accumulator.read();
+accumulator.read();
+alert(accumulator.value); // Output: startingValue + the sum of the values entered by the user in the read method
+
+//creating car object using constructor function:
+
+function Cars(color, brand){
+    if(!new.target) { //if new.target is undefined, then the function is called without new operator
+        return new Cars(color, brand); //call the function again with new operator
+    }
+    this.brand = brand;
+    this.color = color;
+
+    this.getDetails = function(){
+        return `the car is ${this.color} and the brand is ${this.brand}`;
+    };
+
+}
+let car1 = Cars("red", "BMW");
+console.log(car1.getDetails()); // Output: the car is red and the brand is BMW
 
 
+//============================================ optional chaining operator ?. =========================================//
+
+//optional chaining operator ?. allows us to access the properties of an object without having to check if the object is null or undefined.
+// It returns undefined if the object is null or undefined, instead of throwing an error. 
+// This can be useful when working with nested objects or when we are not sure if an object exists.
+// It is a safe way to access the properties of an object without having to check if the object is null or undefined.
+
+let user = {};
+
+console.log(user?.address?.street); // Output: undefined, because user object does not have an address property, so it returns undefined instead of throwing an error
+
+let user1 = null;
+
+console.log(user1?.address?.street); // Output: undefined, because user1 is null, so it returns undefined instead of throwing an error
     
+//it only  protectes the left side of the operator, if the left side is null or undefined, it returns undefined, otherwise it returns the value of the right side of the operator.
+
+//short circuiting with optional chaining operator ?.
+
+let user2 = null;
+let x = 0;
+
+console.log(user2?.name || x++); // Output: undefined, because user2 is null, so it returns undefined instead of throwing an error, and x is not incremented because the left side of the operator is null or undefined
+
+//optional chaining with function:
+
+let userAdmin ={
+    admin(){
+        console.log("I am admin");
+    }
+};
+
+let userGuest = {};
+
+userAdmin.admin?.(); // Output: I am admin, because userAdmin object has an admin method, so it calls the method and logs "I am admin"
+console.log(userGuest.admin?.()); // Output: undefined, because userGuest object does not have an admin 
+
+// optional chainning with bracket notation:
+
+
+let key = "address";
+
+let user = {
+    name: "John",
+    age: 30,
+    address: {
+        street: "123 Main St",
+        city: "New York"
+    }
+};
+
+console.log(JSON.stringify(user , null , 2 )); // Output: {"age":30,"address":{"city":"New York"}}, because the name and street properties have been deleted from the user object
+
+console.log(delete user?.name); // Output: true, because user object has a name property, so it deletes the name property and returns true
+
+console.log(JSON.stringify(user , null , 2 )); // Output: {"age":30,"address":{"city":"New York"}}, because the name and street properties have been deleted from the user object
+
+console.log(delete user?.address?.street); // Output: true, because user object has an address property, and address property has a street property, so it deletes the street property and returns true
+
+console.log(JSON.stringify(user , null , 2 )); // Output: {"age":30,"address":{"city":"New York"}}, because the name and street properties have been deleted from the user object
+
+*/
 
 
 
