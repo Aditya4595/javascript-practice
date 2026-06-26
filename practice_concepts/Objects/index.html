@@ -709,10 +709,102 @@ console.log(Object.getOwnPropertySymbols(user)); // Output: [Symbol(id)],
 
 //sybols can not convert to string, but we can use Symbol.keyFor() method to get the key of a global symbol, and Symbol.prototype.description property to get the description of a symbol.
 
+//================================ Object to Primitive Conversion ========================================//
+
+//object to primitive conversion is a process of converting an object to a primitive value, such as a string, number, or boolean. This is done automatically by JavaScript when an object is used in a context that requires a primitive value, such as in arithmetic operations, string concatenation, or comparison operations.
+// The conversion is done using the object's toString() and valueOf() methods, which can be overridden to customize the conversion behavior. If both methods are not defined, JavaScript will use the default conversion behavior, which may not always produce the desired result.
+// The object to primitive conversion is an important concept in JavaScript, as it allows objects to be used in a variety of contexts and enables developers to create custom behavior for their objects.
+
+let user ={
+    name: "John",
+    age: 30,
+};
+
+alert(user); // Output: [object Object], because the user object is converted to a string using the default toString() method, which returns "[object Object]"
+
+//js uses 3 methods to convert an object to a primitive value: toString(), valueOf(), and Symbol.toPrimitive. 
+// The order of preference is: Symbol.toPrimitive, valueOf(), and then toString().
+
+//1. symbol.toPrimitive: This method is called when an object is converted to a primitive value. It takes a hint argument that indicates the preferred type of the result (string, number, or default). The method should return a primitive value based on the hint.
+
+let user = {
+   name: "John",
+   money: 1000,
+
+   [Symbol.toPrimitive](hint) {
+      console.log(hint);
+
+      return hint === "string"
+         ? `{name: "${this.name}"}`
+         : this.money;
+   }
+};
+
+alert(user); // Output: {name: "John"}, because the hint is "default", so the method returns a string representation of the user object
+alert(+user); // Output: 1000, because the hint is "number", so the method returns the money property of the user object      
+alert(user + 500); // Output: 1500, because the hint is "default", so the method returns the money property of the user object, which is 1000, and then adds 500 to it 
+
+//2. valueOf(): This method is called when an object is converted to a number. It should return a primitive value that represents the object as a number.
+
+let user = {
+    name: "John",
+    money: 1000,
+
+    valueOf() {
+        return this.money;
+    }
+};
+
+alert(+user); // Output: 1000, because the valueOf() method returns the money property of the user object
+
+//3. toString(): This method is called when an object is converted to a string. It should return a primitive value that represents the object as a string.
+
+let user = {
+    name: "John",
+    money: 1000,
+
+    toString() {
+        return this.name;
+    }
+    };
+
+    alert(user); // Output: "John", because the toString() method returns a string representation of the user object
+  
+  // using both valueOf() and toString() methods together:
+
+  let user = {
+    name: "John",
+    money: 1000,
+    valueOf() {
+        return this.money;
+    },
+    toString() {
+        return this.name;
+    }
+    };
+  
+    alert(+user); // Output: 1000
+    console.log(user + 500); // Output: 1500, because the valueOf() method is called first, which returns the money property of the user object, and then adds 500 to it
+    console.log(String(user)); // Output: "John", because the toString() method is called, which returns a string representation of the user object
+    console.log(typeof user); // Output: "object", because user is still an object, even though it has been converted to a primitive value in certain contexts
+    console.log(typeof user.toString()); // Output: "string", because the toString() method is called, which returns a string representation of the user object
+    console.log(typeof user.valueOf()); // Output: "number", because the valueOf() method is called, which returns a number representation of the user object
+
+    //the primary goal of conversion is to give primitive value not object or {} or [] or function, because those are not primitive values. 
+    // The conversion is done automatically by JavaScript when an object is used in a context that requires a primitive value, such as in arithmetic operations, string concatenation, or comparison operations.
 */
 
-        
-        
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </body>
