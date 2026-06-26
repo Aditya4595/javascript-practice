@@ -639,17 +639,77 @@ console.log(delete user?.address?.street); // Output: true, because user object 
 
 console.log(JSON.stringify(user , null , 2 )); // Output: {"age":30,"address":{"city":"New York"}}, because the name and street properties have been deleted from the user object
 
+
+//============================================ symbols =========================================//
+
+//symbols are a new primitive type in JavaScript that was introduced in ES6. 
+// They are unique and immutable values that can be used as keys for object properties. Symbols are created using the Symbol() function, and they can be used to create private properties or to avoid naming collisions in objects.
+// The main advantage of using symbols is that they are guaranteed to be unique, even if two symbols have the same description. This makes them useful for creating private properties or for creating keys that won't conflict with other keys in an object.
+
+let id = Symbol("id");
+
+let user = {
+   name: "John",
+   [id]: 123
+};
+
+console.log(user.name); // John
+console.log(user[id]);  // 123, use [] to access the symbol property of the user object
+
+//global symbols:
+
+let globalId = Symbol.for("globalId");
+let user1 = {
+    name: "John",
+    [globalId]: 123
+};
+let user2 = {
+    name: "Jane",
+    [globalId]: 456
+};
+
+console.log(user1[globalId]); // Output: 123
+console.log(user2[globalId]); // Output: 456
+
+
+//with global symbol Symbol.for() same key ke liye same symbol return karta hai.
+
+let id1 = Symbol.for("id");
+let id2 = Symbol.for("id");
+
+console.log(id1 === id2);// Output: true, because both id1 and id2 are created using Symbol.for() with the same key "id", so they refer to the same symbol in the global symbol registry.
+
+//use Symbol.keyFor() method to get the key of a global symbol:
+console.log(Symbol.keyFor(Symbol.for("id"))); // Output: id, because Symbol.for() creates a global symbol with the key "id", and Symbol.keyFor() returns the key of the global symbol
+
+//but we can not do the same for normal symbols, because normal symbols are unique and do not have a global registry.
+
+let id3 = Symbol("id");
+let id4 = Symbol("id");
+
+console.log(id3 === id4);// Output: false, because both id3 and id4 are created using Symbol() with the same description "id", but they are unique symbols and do not refer to the same symbol in the global symbol registry.
+
+//usually symbols are hide from the for...in loop, but we can access them using Object.getOwnPropertySymbols() method.
+//example:
+
+let user = {
+    name: "John",
+    age: 30,
+    [Symbol("id")]: 1
+};
+
+for (let key in user) {
+    console.log(key); // Output: name, age, because the symbol property is not enumerable and is hidden from the for...in loop
+}
+console.log(Object.getOwnPropertySymbols(user)); // Output: [Symbol(id)],
+
+//to access the symbol property, we can use Object.getOwnPropertySymbols() method, which returns an array of all symbol properties of an object.
+
+//this two topics are quite advanced and are not used frequently in day to day programming, but they are useful in certain scenarios where we want to create private properties or avoid naming collisions in objects.
+
+//sybols can not convert to string, but we can use Symbol.keyFor() method to get the key of a global symbol, and Symbol.prototype.description property to get the description of a symbol.
+
 */
-
-
-
-
-
-
-
-
-
-
 
         
         
