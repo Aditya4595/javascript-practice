@@ -39,7 +39,7 @@
 
         // Array
         let numbers = [1, 2, 3, 4, 5];
-        console.log("Numbers Array:", numbers);*/
+        console.log("Numbers Array:", numbers);
 
         //MODAL:they pause script execution until the user interacts with them
         //alert,prompt,confirm
@@ -55,7 +55,87 @@
 
          let isStudent = confirm("Are you a student?");
          console.log("Is Student:", isStudent);
+         
+//=========================== Advanced Data Types ==========================//        
+
+//1) methods of primitives:
+
+//String methods
+
+let str = "Hello, World!";
+console.log(str.length); // Output: 13
+console.log(str.toUpperCase()); // Output: "HELLO, WORLD!"
+console.log(str.toLowerCase()); // Output: "hello, world!"
+
+//Number methods
+
+let num = 42;
+console.log(num.toString()); // Output: "42"
+console.log(num.toFixed(2)); // Output: "42.00"
+
+let num2 = 3.14159;
+console.log(num2.toFixed(2)); // Output: "3.14"
+
+//it also rounds the number to the specified number of decimal places
+let num3 = 5.6789;
+console.log(num3.toFixed(2)); // Output: "5.68"
+
+//examples of string methods includes: 
+// - length
+// - toUpperCase()
+// - toLowerCase()
+// - indexOf()
+// - lastIndexOf()
+// - substring()
+// - slice()
+// - split()
+// - join()
+// - trim()
+
+//examples of number methods includes:
+// - toString()
+// - toFixed()
+// - toPrecision()
+// - toExponential()
+// - toLocaleString()
+
+// null and undefined are primitive data types in JavaScript, but they do not have methods like strings and numbers. 
+// However, you can check their types using the typeof operator:
+
+let x = null;
+console.log(typeof x); // Output: "object"
+
+let y;
+console.log(typeof y); // Output: "undefined"
+
+// don't use new keyword with primitive data types like string, number, and boolean. 
+// It creates an object wrapper around the primitive value, which can lead to unexpected behavior. 
+// Instead, use the literal syntax for these data types.
+
+//for example:
+
+let zero = new Number(0);
+
+if (zero) {
+    console.log("runs");
+}// Output: "runs" because zero is an object and objects are truthy in JavaScript
+
+//to avoid this, use the converters:
+
+let numb = Number("123");
+console.log(numb); // Output: 123
+
+let stri = String(123);
+console.log(stri); // Output: "123"
+
+let bool = Boolean(1);
+console.log(bool); // Output: true
+*/
+
+
         
+      
+         
     </script>
 </body>
 </html>
