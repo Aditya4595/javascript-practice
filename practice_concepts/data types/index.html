@@ -58,7 +58,7 @@
          
 //=========================== Advanced Data Types ==========================//        
 
-//1) methods of primitives:
+// 1) methods of primitives:
 
 //String methods
 
@@ -131,6 +131,267 @@ console.log(stri); // Output: "123"
 let bool = Boolean(1);
 console.log(bool); // Output: true
 */
+// 2) Numbers:
+
+// there are two types of number in javascript: normal numbers and BigInt numbers. 
+// Normal numbers can represent both integers and floating-point numbers, while BigInt numbers are used to represent integers that are too large to be represented by normal numbers.
+
+let age = 30; // normal number
+let price = 19.99; // normal number
+let bigIntNum = 123456789012345678901234567890123456789
+
+console.log(typeof age); // Output: "number"
+console.log(typeof price); // Output: "number"
+console.log(typeof bigIntNum); // Output: "bigint"
+
+// there is a better way to write a large number in javascript using underscores (_) to separate groups of digits for better readability.
+
+let billion = 1000000000;
+
+let billionWithUnderscores = 1_000_000_000;
+
+console.log(billion); // Output: 1000000000
+console.log(billionWithUnderscores); // Output: 1000000000
+
+//both are equal and can be used interchangeably. 
+// The underscores are ignored by the JavaScript engine and do not affect the value of the number.
+
+// scientific notation (e):
+
+//1e9 is equivalent to 1 * 10^9, which is equal to 1000000000.
+
+console.log(1e9); // Output: 1000000000
+console.log(7.3e9); // Output: 7300000000
+
+// small numbers 1e-6 is equivalent to 1 * 10^-6, which is equal to 0.000001.
+// microseconds : 1 microsecond = 1e-6 seconds
+
+// js supports decimal, hexadecimal, octal, and binary number systems.
+
+// decimal
+
+let decimalNum = 42; // base 10
+console.log(decimalNum); // Output: 42
+
+// hexadecimal
+
+let hexNum = 0xff; // base 16
+console.log(hexNum); // Output: 255
+
+// octal
+let octalNum = 0o52; // base 8
+console.log(octalNum); // Output: 42
+
+// binary   
+let binaryNum = 0b101010; // base 2
+console.log(binaryNum); // Output: 42
+
+// number to string conversion:
+
+// syntax: number.toString(base)
+
+let numConvert = 255;
+let strConvert = numConvert.toString(16);
+console.log(strConvert); // Output: "ff"
+
+//in binary :
+
+console.log(numConvert.toString(2)); // Output: "11111111"
+
+//in octal :
+
+console.log(numConvert.toString(8)); // Output: "377"
+
+//if we use the floating number for conversion the syntax will be the same but the output will be different.
+
+//example of syntax:
+
+//use two dots (..) to access the methods of a number.
+
+console.log(123..toString(16)); // Output: "7b"
+
+//or use () to access the methods of a number.
+
+console.log((123).toString(16)); // Output: "7b"
+
+//there are several way to round a number in javascript. 
+// The most common methods are Math.round(), Math.floor(), and Math.ceil().
+
+//math.floor() rounds a number down to the nearest integer.
+
+let num = 4.7;
+console.log(Math.floor(num)); // Output: 4
+
+//for nagative numbers, Math.floor() rounds down to the next lowest integer.
+
+let num2 = -4.7;
+console.log(Math.floor(num2)); // Output: -5
+
+//math.ceil() rounds a number up to the nearest integer.
+
+let num3 = 4.3;
+console.log(Math.ceil(num3)); // Output: 5
+
+//for nagative numbers, Math.ceil() rounds up to the next highest integer.
+
+let num4 = -4.3;
+console.log(Math.ceil(num4)); // Output: -4
+
+//math.round() rounds a number to the nearest integer.
+
+let num5 = 4.5;
+console.log(Math.round(num5)); // Output: 5
+
+let num6 = -4.6;
+console.log(Math.round(num6)); // Output: -5
+
+let num7 = 4.4;
+console.log(Math.round(num7)); // Output: 4
+
+let num8 = -4.4;
+console.log(Math.round(num8)); // Output: -4
+
+//math.trunc() truncates a number to its integer part by removing any fractional digits.(removes decimal part of the number).
+
+let num9 = 4.7;
+console.log(Math.trunc(num9)); // Output: 4
+
+let num10 = -4.7;
+console.log(Math.trunc(num10)); // Output: -4
+
+/*========= decimal places rounding ========== */
+
+// there are several ways to round a number to a specific number of decimal places in JavaScript.
+// The most common methods are toFixed(), Math.round(), and Math.floor().
+// toFixed() method returns a string representation of a number rounded to a specified number of decimal places.
+// to fix this use + to convert the string to a number.
+
+let num11 = 3.14159;
+console.log(num11.toFixed(2)); // Output: "3.14"
+
+let num12 = 3.14159;
+console.log(+num12.toFixed(2)); // Output: 3.14
+
+/*========== infinity and NaN =======*/
+
+// Infinity is a special numeric value that represents positive or negative infinity.
+// It is greater than any finite number and can be used to represent values that exceed the maximum representable value in JavaScript.
+
+console.log(1 / 0); // Output: Infinity
+console.log(1e500); // Output: Infinity
+
+// NaN (Not-a-Number) is a special numeric value that represents an undefined or unrepresentable value.
+// It is typically the result of an invalid mathematical operation, such as dividing zero by zero or taking the square root of a negative number.
+
+console.log(0 / 0); // Output: NaN
+console.log("hello" * 2); // Output: NaN
+
+// checking for NaN can be done using the isNaN() function or the Number.isNaN() method.
+
+isNaN(NaN); // Output: true
+isNaN(123); // Output: false
+isNaN("hello"); // Output: true, because "hello" is not a number and cannot be converted to a number.
+
+// Number.isNaN() is a more reliable way to check for NaN, as it does not perform type coercion like isNaN() does.
+
+Number.isNaN(NaN); // Output: true , because NaN is a number and is equal to itself.
+Number.isNaN(123); // Output: false , because 123 is a number and not NaN.
+Number.isNaN("hello"); // Output: false , because "hello" is not a number, but it is not NaN either.
+
+//checking for finite numbers can be done using the isFinite() function or the Number.isFinite() method.
+
+isFinite(Infinity); // Output: false
+isFinite(123); // Output: true
+isFinite("hello"); // Output: false
+
+// Number.isFinite() is a more reliable way to check for finite numbers, as it does not perform type coercion like isFinite() does.
+
+Number.isFinite(Infinity); // Output: false
+Number.isFinite(123); // Output: true
+Number.isFinite("hello"); // Output: false
+
+/*============= parseInt() and parseFloat() ===============*/
+
+// parseInt() and parseFloat() are two built-in JavaScript functions that are used to convert strings to numbers.
+// parseInt() converts a string to an integer.
+// parseFloat() converts a string to a floating-point number.
+
+//parseInt()
+
+let intString = "42";
+let intNum = parseInt(intString);
+console.log(intNum); // Output: 42
+
+parseInt("100px"); // Output: 100
+parseInt("hello"); // Output: NaN
+parseInt("10.5"); // Output: 10 , because parseInt() only returns the integer part of the number and ignores the decimal part.
+
+//parseFloat()
+
+let floatString = "3.14";
+let floatNum = parseFloat(floatString);
+console.log(floatNum); // Output: 3.14
+
+parseFloat("100px"); // Output: 100
+parseFloat("hello"); // Output: NaN
+parseFloat("10.5"); // Output: 10.5 , because parseFloat() returns the entire number, including the decimal part.
+
+/*============== Math object ===============*/
+
+// The Math object is a built-in JavaScript object that provides a set of mathematical functions and constants.
+// there are several methods of the Math object that can be used to perform mathematical operations, such as rounding, trigonometry, and logarithms.
+// Some of the most commonly used methods of the Math object include:
+// math.random() - returns a random number between 0 (inclusive) and 1 (exclusive).
+// math.abs() - returns the absolute value of a number.
+// math.min() - returns the smallest of zero or more numbers.
+// math.max() - returns the largest of zero or more numbers.
+// math.pow() - returns the base to the exponent power, that is, base^exponent.
+// math.sqrt() - returns the square root of a number.
+// math.floor() - returns the largest integer less than or equal to a given number.
+
+//math.random()
+
+console.log(Math.random());
+
+//math.abs()
+
+console.log(Math.abs(-5)); // Output: 5 , because the absolute value of -5 is 5.
+
+//math.min()
+
+console.log(Math.min(3, 1, 4, 1, 5)); // Output: 1 , because 1 is the smallest number in the list.
+
+//math.max()
+
+console.log(Math.max(3, 1, 4, 1, 5)); // Output: 5 , because 5 is the largest number in the list.
+
+//math.pow()
+
+console.log(Math.pow(2, 3)); // Output: 8 , because 2^3 = 8.
+
+//math.sqrt()
+
+console.log(Math.sqrt(16)); // Output: 4 , because the square root of 16 is 4.
+
+//math.floor()
+
+console.log(Math.floor(4.7)); // Output: 4 , because Math.floor() rounds down to the nearest integer.
+
+/*=========== special problem ============*/
+// if we add 0.1 + 0.2 in javascript we will get 0.30000000000000004 instead of 0.3 because of the way floating-point numbers are represented in binary.
+// To avoid this problem, we can use the toFixed() method to round the result to a specific number of decimal places.
+
+let sum = 0.1 + 0.2;
+console.log(+sum.toFixed(2)); // Output: 0.30 , because toFixed(2) rounds the result to 2 decimal places.
+
+
+
+
+
+
+
+
+
 
 
         
