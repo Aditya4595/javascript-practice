@@ -44,30 +44,32 @@
         //MODAL:they pause script execution until the user interacts with them
         //alert,prompt,confirm
         
-        let message = alert("Welcome to JavaScript Data Types!");
-         console.log(message);
+        //let message = alert("Welcome to JavaScript Data Types!");
+        //console.log(message);
 
-         let name = prompt("What is your name?");
-         console.log("Name:", name);
+        //let name = prompt("What is your name?");
+        //console.log("Name:", name);
 
         let age= prompt("how old are you?");
          console.log("Age:", age);
 
          let isStudent = confirm("Are you a student?");
-         console.log("Is Student:", isStudent);
+         console.log("Is Student:", isStudent);*/
+
+/*
          
 //=========================== Advanced Data Types ==========================//        
 
 // 1) methods of primitives:
 
-//String methods
+//========= String methods ========//
 
 let str = "Hello, World!";
 console.log(str.length); // Output: 13
 console.log(str.toUpperCase()); // Output: "HELLO, WORLD!"
 console.log(str.toLowerCase()); // Output: "hello, world!"
 
-//Number methods
+//========= Number methods ========//
 
 let num = 42;
 console.log(num.toString()); // Output: "42"
@@ -130,7 +132,7 @@ console.log(stri); // Output: "123"
 
 let bool = Boolean(1);
 console.log(bool); // Output: true
-*/
+
 // 2) Numbers:
 
 // there are two types of number in javascript: normal numbers and BigInt numbers. 
@@ -156,7 +158,7 @@ console.log(billionWithUnderscores); // Output: 1000000000
 //both are equal and can be used interchangeably. 
 // The underscores are ignored by the JavaScript engine and do not affect the value of the number.
 
-// scientific notation (e):
+//========= scientific notation (e) =========//
 
 //1e9 is equivalent to 1 * 10^9, which is equal to 1000000000.
 
@@ -166,7 +168,7 @@ console.log(7.3e9); // Output: 7300000000
 // small numbers 1e-6 is equivalent to 1 * 10^-6, which is equal to 0.000001.
 // microseconds : 1 microsecond = 1e-6 seconds
 
-// js supports decimal, hexadecimal, octal, and binary number systems.
+//===== js supports decimal, hexadecimal, octal, and binary number systems. ======//
 
 // decimal
 
@@ -186,7 +188,7 @@ console.log(octalNum); // Output: 42
 let binaryNum = 0b101010; // base 2
 console.log(binaryNum); // Output: 42
 
-// number to string conversion:
+//======================= number to string conversion =========================//
 
 // syntax: number.toString(base)
 
@@ -217,26 +219,29 @@ console.log((123).toString(16)); // Output: "7b"
 //there are several way to round a number in javascript. 
 // The most common methods are Math.round(), Math.floor(), and Math.ceil().
 
-//math.floor() rounds a number down to the nearest integer.
+//========= Math.floor() =========//
+// Math.floor() rounds a number down to the nearest integer.
 
-let num = 4.7;
-console.log(Math.floor(num)); // Output: 4
+let floorNum = 4.7;
+console.log(Math.floor(floorNum)); // Output: 4
 
 //for nagative numbers, Math.floor() rounds down to the next lowest integer.
 
-let num2 = -4.7;
-console.log(Math.floor(num2)); // Output: -5
+let floorNumNegative = -4.7;
+console.log(Math.floor(floorNumNegative)); // Output: -5
 
+//========= Math.ceil() =========//
 //math.ceil() rounds a number up to the nearest integer.
 
-let num3 = 4.3;
-console.log(Math.ceil(num3)); // Output: 5
+let ceilNum = 4.3;
+console.log(Math.ceil(ceilNum)); // Output: 5
 
 //for nagative numbers, Math.ceil() rounds up to the next highest integer.
 
 let num4 = -4.3;
 console.log(Math.ceil(num4)); // Output: -4
 
+//========= Math.round() =========//
 //math.round() rounds a number to the nearest integer.
 
 let num5 = 4.5;
@@ -251,6 +256,7 @@ console.log(Math.round(num7)); // Output: 4
 let num8 = -4.4;
 console.log(Math.round(num8)); // Output: -4
 
+//========= Math.trunc() =========//
 //math.trunc() truncates a number to its integer part by removing any fractional digits.(removes decimal part of the number).
 
 let num9 = 4.7;
@@ -259,7 +265,7 @@ console.log(Math.trunc(num9)); // Output: 4
 let num10 = -4.7;
 console.log(Math.trunc(num10)); // Output: -4
 
-/*========= decimal places rounding ========== */
+//========= decimal places rounding ==========//
 
 // there are several ways to round a number to a specific number of decimal places in JavaScript.
 // The most common methods are toFixed(), Math.round(), and Math.floor().
@@ -272,7 +278,7 @@ console.log(num11.toFixed(2)); // Output: "3.14"
 let num12 = 3.14159;
 console.log(+num12.toFixed(2)); // Output: 3.14
 
-/*========== infinity and NaN =======*/
+//========== infinity and NaN =======//
 
 // Infinity is a special numeric value that represents positive or negative infinity.
 // It is greater than any finite number and can be used to represent values that exceed the maximum representable value in JavaScript.
@@ -310,7 +316,7 @@ Number.isFinite(Infinity); // Output: false
 Number.isFinite(123); // Output: true
 Number.isFinite("hello"); // Output: false
 
-/*============= parseInt() and parseFloat() ===============*/
+//============= parseInt() and parseFloat() ===============//
 
 // parseInt() and parseFloat() are two built-in JavaScript functions that are used to convert strings to numbers.
 // parseInt() converts a string to an integer.
@@ -336,7 +342,7 @@ parseFloat("100px"); // Output: 100
 parseFloat("hello"); // Output: NaN
 parseFloat("10.5"); // Output: 10.5 , because parseFloat() returns the entire number, including the decimal part.
 
-/*============== Math object ===============*/
+//============== Math object ===============//
 
 // The Math object is a built-in JavaScript object that provides a set of mathematical functions and constants.
 // there are several methods of the Math object that can be used to perform mathematical operations, such as rounding, trigonometry, and logarithms.
@@ -377,26 +383,203 @@ console.log(Math.sqrt(16)); // Output: 4 , because the square root of 16 is 4.
 
 console.log(Math.floor(4.7)); // Output: 4 , because Math.floor() rounds down to the nearest integer.
 
-/*=========== special problem ============*/
+//=========== special problem ============//
 // if we add 0.1 + 0.2 in javascript we will get 0.30000000000000004 instead of 0.3 because of the way floating-point numbers are represented in binary.
 // To avoid this problem, we can use the toFixed() method to round the result to a specific number of decimal places.
 
 let sum = 0.1 + 0.2;
 console.log(+sum.toFixed(2)); // Output: 0.30 , because toFixed(2) rounds the result to 2 decimal places.
 
+*/
+// 3) String:
 
+// A string is a sequence of characters used to represent text. 
+// In JavaScript, strings are enclosed in either single quotes (' '), double quotes (" "), or backticks (` `) for template literals.
+// Strings can contain letters, numbers, symbols, and whitespace characters.
 
+let singleQuoteString = 'Hello, World!';
+let doubleQuoteString = "Hello, World!";
+let templateLiteralString = `Hello, World!`;// Template literals allow for multi-line strings and string interpolation using ${}.
 
+let name = "John";
 
+console.log(`hello, ${name}!`);
 
+//backticks allows multi line srtings:
 
+let multiLineString = `This is a multi-line
+string in JavaScript.`;
 
+console.log(multiLineString);
 
+//======= escape characters =======//
 
+console.log("This is a string with a newline character.\nThis is the second line.");// Output: This is a string with a newline character.
+// This is the second line.
 
-        
-      
-         
+console.log("This is a string with a tab character.\tThis is the second line.");// Output: This is a string with a tab character.
+// This is the second line.
+
+console.log("This is a string with a backslash character.\\"); // Output: This is a string with a backslash character.\
+
+console.log("This is a string with a single quote character \'."); // Output: This is a string with a single quote character '.
+
+console.log("This is a string with a double quote character \"."); // Output: This is a string with a double quote character ".
+
+console.log('I\'m Adii');// Output: I'm Adii
+
+//======= string.length =======//
+
+let str = "Hello, World!";
+console.log(str.length); // Output: 13
+
+//======= Accessing characters in a string =======//
+
+console.log(str[0]); // Output: "H"
+console.log(str.charAt(0)); // Output: "H"
+console.log(str[str.length - 1]); // Output: "!"
+console.log(str.at(-1)); // Output: "!"
+//======= looping through a string =======//
+
+for(let char of str) {
+    console.log(char);
+}// Output: H e l l o ,   W o r l d !
+
+//we can not change a character in a string directly, because strings are immutable in JavaScript.
+
+// for example:
+
+let str2 = "Hello, World!";
+str2[0] = "h"; // This will not change the string
+
+//rathetr we can create a new string with the desired changes:
+
+let str3 = "Hello, World!";
+str3 = "h" + str3[1]; // This will create a new string with the first character changed to "h"
+console.log(str3); // Output: "hello, World!"
+
+//======= string methods =======//
+
+// some commonly used string methods include:
+// - toUpperCase()               
+// - toLowerCase()
+// - indexOf()
+// - lastIndexOf()
+// - substring()
+// - slice()
+// - localCompare()
+
+// for example:
+
+console.log("Aditya".toUpperCase()); // Output: "ADITYA", converts all characters in the string to uppercase.
+console.log("ADITYA".toLowerCase()); // Output: "aditya", converts all characters in the string to lowercase.
+console.log("Aditya".indexOf("i")); // Output: 5, returns the index of the first occurrence of the specified character in the string.
+console.log("Aditya".lastIndexOf("A")); // Output: 0, returns the index of the last occurrence of the specified character in the string.
+
+let str4 = "Aditya";
+
+console.log(str4.includes("A")); // Output: true, returns true if the string contains the specified character, otherwise false.
+//better than indexOf() because it returns a boolean value instead of an index.
+
+console.log(str4.startsWith("A")); // Output: true, returns true if the string starts with the specified character, otherwise false.
+console.log(str4.endsWith("A")); // Output: false, returns true if the string ends with the specified character, otherwise false.
+
+// extract part of a string using substring() and slice() methods.
+
+console.log(str4.substring(0, 3)); // Output: "Adi", returns the part of the string between the specified indices.
+console.log(str4.slice(0, -3)); // Output: "Adi", returns the part of the string between the specified indices. The difference is that slice() can accept negative indices, while substring() cannot.
+//nagative indices count from the end of the string, while positive indices count from the beginning of the string.
+
+console.log(str4.slice(-3)); // Output: "tya", returns the last 3 characters of the string.
+
+console.log("apple".localeCompare("banana")); // Output: -1, returns a negative number if the string comes before the specified string in sort order.
+console.log("banana".localeCompare("apple")); // Output: 1, returns a positive number if the string comes after the specified string in sort order.
+console.log("apple".localeCompare("apple")); // Output: 0, returns 0 if the strings are equal in sort order.
+
+//======= Extra useful string methods =======//
+
+// - trim() - removes whitespace from both ends of a string.
+// - split() - splits a string into an array of substrings based on a specified separator.
+// - repeat() - repeats a string a specified number of times.
+// - truncate() - truncates a string to a specified length and adds an ellipsis (...) if the string is longer than the specified length.
+
+let str5 = "   Hello, World!   ";
+console.log(str5.trim()); // Output: "Hello, World!", removes whitespace from both ends of the string.
+
+let str6 = "apple,banana,orange";
+console.log(str6.split(",")); // Output: ["apple", "banana", "orange"], splits the string into an array of substrings based on the specified separator.
+
+console.log("Hello".repeat(3)); // Output: "HelloHelloHello", repeats the string 3 times.
+
+// truncate() is not a built-in method in JavaScript, but we can create a custom function to truncate a string.
+// for example:
+
+function truncate(str, maxLength) {
+    if (str.length > maxLength) {
+        return str.slice(0, maxLength) + "...";
+    } else {
+        return str;
+    }
+}
+
+console.log(truncate("This is a long string that needs to be truncated.", 20)); // Output: "This is a long stri..."
+
+// some examples of string methods include:
+
+// 1) uppercase the first letter of a string:
+
+function upCaseFirstLetter(str) {
+    if(!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+console.log(upCaseFirstLetter("hello")); // Output: "Hello"
+
+// 2) check if a string is a palindrome:
+
+function isPalindrome(str) {
+    let reversedStr = str.split("").reverse().join("");
+    return str === reversedStr;
+}
+
+console.log(isPalindrome("racecar")); // Output: true
+console.log(isPalindrome("hello")); // Output: false
+
+// 3)check spam in a string:
+
+function checkSpam(str) {
+    let lowerStr = str.toLowerCase();
+    return lowerStr.includes("viagra") || lowerStr.includes("xxx");
+}
+
+console.log(checkSpam("buy viagra now!")); // Output: true
+console.log(checkSpam("Get rich quick!")); // Output: false
+
+// 4) truncate a string to a specified length:
+
+   function truncateString(str, maxLength) {
+    return (str.length > maxLength) ? str.slice(0, maxLength) + "..." : str;
+ }
+
+console.log(truncateString("This is a long string that needs to be truncated.", 20)); // Output: "This is a long string that needs to be truncated..."
+
+// 5) extract a currency value from a string:
+
+function extractCurrencyValue(str) {
+    return +str.slice(1);
+}
+
+console.log(extractCurrencyValue("$100")); // Output: 100
+
+// 6) extract username from an email address:
+
+function extractUsername(email){
+    return email.slice(0, email.indexOf("@"));
+}
+
+console.log(extractUsername("aditya@gmail.com")); // Output: "aditya"
+
+//
     </script>
 </body>
 </html>
