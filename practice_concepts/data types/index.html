@@ -390,7 +390,6 @@ console.log(Math.floor(4.7)); // Output: 4 , because Math.floor() rounds down to
 let sum = 0.1 + 0.2;
 console.log(+sum.toFixed(2)); // Output: 0.30 , because toFixed(2) rounds the result to 2 decimal places.
 
-*/
 // 3) String:
 
 // A string is a sequence of characters used to represent text. 
@@ -580,6 +579,283 @@ function extractUsername(email){
 console.log(extractUsername("aditya@gmail.com")); // Output: "aditya"
 
 //
-    </script>
+*/
+// 4) Arrays:
+
+// An array is a collection of values that can be of any data type, including other arrays.
+// In JavaScript, arrays are created using square brackets [] and can be accessed using their index, which starts at 0.
+// Arrays can be modified by adding, removing, or changing elements, and they have a variety of built-in methods for manipulating their contents.
+// there are two ways to create an array in JavaScript: using the array literal syntax [] or using the Array constructor.
+// for example:
+
+let fruits = ["apple", "banana", "orange"]; // array literal syntax
+let numbers = new Array(1, 2, 3, 4, 5); // Array constructor syntax
+
+// mostly use the array literal syntax [] because it is more concise and easier to read.
+
+console.log(fruits); // Output: ["apple", "banana", "orange"]
+console.log(fruits[0]); // Output: "apple"
+console.log(fruits.length); // Output: 3 , because the length property returns the number of elements in the array.
+
+// let's modify the elements of the array:
+
+fruits[1] = "grape"; // change the second element to "grape"
+console.log(fruits); // Output: ["apple", "grape", "orange"]
+
+// let's add a new element to the array:
+
+fruits[3] = "kiwi"; // add a new element to the end of the array
+console.log(fruits); // Output: ["apple", "grape", "orange", "kiwi"] or we can use the push() method to add a new element to the end of the array:
+
+fruits.push("mango"); // add a new element to the end of the array
+console.log(fruits); // Output: ["apple", "grape", "orange", "kiwi", "mango"]
+
+// let's remove the last element from the array:
+
+fruits.pop(); // remove the last element from the array
+console.log(fruits); // Output: ["apple", "grape", "orange", "kiwi"]
+
+//traditional way to access the last element of an array is to use the length property and subtract 1 from it, like this:
+console.log(fruits[fruits.length - 1]);
+
+//mordern way to access the last element of an array is to use the at() method, like this:
+console.log(fruits.at(-1)); // Output: "kiwi" , because the at() method allows us to access elements of an array using negative indices, which count from the end of the array.
+
+//use this method to access the second to last element of an array:
+console.log(fruits.at(-2)); // Output: "orange" , because the at()
+
+//array can also contain elements of different data types, including other arrays and objects.
+
+let mixedArray = ["apple", 3.14, true, [1, 2, 3], {name: "John", age: 30}];
+console.log(mixedArray); // Output: ["apple", 3.14, true, [1, 2, 3], {name: "John", age: 30}]
+
+console.log(mixedArray[3][1]); // Output: 2 , because the fourth element is an array and we can access its elements using their index.
+console.log(mixedArray[4].name); // Output: "John" , because the fifth element is an object and we can access its properties using dot notation.
+console.log(mixedArray[1]); // Output: 3.14 , because the second element is a number and we can access its value using its index.   
+
+// you can also use the Array.isArray() method to check if a value is an array.
+
+console.log(Array.isArray(mixedArray)); // Output: true , because mixedArray is an array.
+
+//================ Queue vs stack =================//
+// a queue is a data structure that follows the First In First Out (FIFO) principle, where the first element added to the queue is the first one to be removed.
+// a stack is a data structure that follows the Last In First Out (LIFO) principle, where the last element added to the stack is the first one to be removed.
+// Array can be used to implement both queues and stacks in JavaScript.
+
+let queue = [];
+queue.push(1); // add an element to the end of the queue
+queue.push(2);
+queue.push(3);
+console.log(queue); // Output: [1, 2, 3]
+queue.shift(); // remove the first element from the queue
+console.log(queue); // Output: [2, 3]
+queue.unshift(0); // add an element to the beginning of the queue
+console.log(queue); // Output: [0, 2, 3]
+queue.pop(); // remove the last element from the queue
+console.log(queue); // Output: [0, 2]
+
+// use push and pop always to implement a stack in JavaScript bceause they are more efficient than shift and unshift, which require re-indexing the entire array.
+
+//========= Arrays are objects =========//
+
+// In JavaScript, arrays are a type of object that can hold multiple values of different data types.
+// Arrays are created using square brackets [] and can be accessed using their index, which starts at 0. Arrays can be modified by adding, removing, or changing elements, and they have a variety of built-in methods for manipulating their contents.
+// internally it is same as an object with extra methods and properties. The main difference between arrays and objects is that arrays are ordered collections of values, while objects are unordered collections of key-value pairs.
+
+// for example:
+
+let arr = ["A", "B", "C"];
+
+//is actually same as:
+
+let obj = {
+    0: "A",
+    1: "B",
+    2: "C",
+    length: 3
+};
+
+// arryas can be copied by refrence, which means that if we assign an array to a new variable, both variables will point to the same array in memory.
+
+let shapes = ["circle", "square", "triangle"];
+let newShapes = shapes;
+newShapes.push("rectangle");
+console.log(shapes); // Output: ["circle", "square", "triangle", "rectangle"], because newShapes and shapes point to the same array in memory.
+
+// here only refrence is copied, not the actual array. 
+
+//================= loop through an array =================//
+
+// 1. for loop:
+
+let colors = ["red", "green", "blue"];
+for(let i = 0; i < colors.length; i++) {
+    console.log(colors[i]);
+} // Output: red green blue
+
+// 2. for...of loop:
+
+for(let color of colors) {
+    console.log(color);
+} // Output: red green blue
+
+// 3. for...in loop:
+
+for(let index in colors) {
+    console.log(index + ": " + colors[index]);
+} // Output: 0: red 1: green 2: blue
+
+//do not use for...in loop to iterate over an array, because it iterates over all enumerable properties of an object, including inherited properties, which can lead to unexpected behavior. Use for...of loop instead.
+
+//============ length property interesting behavior ===============//
+
+let arr2 = [];
+arr2[100] = "Hello";
+console.log(arr2.length); // Output: 101, because the length property returns the highest index + 1, even if there are empty slots in the array.
+
+//========= clear Array ==========//
+
+let arr3 = [1, 2, 3, 4, 5];
+arr3.length = 0;
+
+console.log(arr3); // Output: [], because setting the length property to 0 removes all elements from the array.
+
+//========== Multi-dimensional arrays ==========//
+
+// A multi-dimensional array is an array that contains other arrays as its elements.
+
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+console.log(matrix[1][2]); // Output: 6
+
+//===== Array to string conversion =====//
+
+let arr4 = [1, 2, 3, 4, 5];
+console.log(arr4.toString()); // Output: "1,2,3,4,5", because the toString() method converts the array to a string by joining its elements with commas.
+
+//examples of Array:
+
+// 1. example of array methods:
+
+let styles = ["Jazz", "Blues"];
+console.log(styles);
+styles.push("Rock-n-Roll");
+styles[Math.floor((styles.length - 1) / 2)] = "Classic";
+console.log(styles); 
+styles.shift();
+console.log(styles);
+styles.unshift("Rap", "Reggae");
+console.log(styles); 
+
+// 2. example of array methods:
+
+let arr5 = ["a", "b"];
+
+arr5.push(function() {
+  alert( this );
+})
+
+ // Output: ["a", "b", function() { alert( this ); }], because the function is added to the end of the array and can be called using its index.
+
+// 3. example of array methods:
+
+function sumInput() {
+  let numbers = [];
+
+  while (true) {
+    let value = prompt("Enter a number:", 0);
+
+    if (value === "" || value === null || !isFinite(value)) break;
+
+    numbers.push(+value);
+  }
+
+  let sum = 0;
+  for (let number of numbers) {
+    sum += number;
+  }
+  return sum;
+}
+
+// 4. example of array methods:
+
+function getMaxSubSum(arr) {
+  let maxSum = 0; // if we take no elements, zero will be returned
+
+  for (let i = 0; i < arr.length; i++) {
+    let sumFixedStart = 0;
+    for (let j = i; j < arr.length; j++) {
+      sumFixedStart += arr[j];
+      maxSum = Math.max(maxSum, sumFixedStart);
+    }
+  }
+
+  return maxSum;
+}
+
+// stiil learn the example 4's explanation and how it works.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//============ array methods ============//
+
+// some commonly used array methods include:
+// - push() - adds one or more elements to the end of an array and returns the new length of the array.
+// - pop() - removes the last element from an array and returns that element.
+// - unshift() - adds one or more elements to the beginning of an array and returns the new length of the array.
+// - shift() - removes the first element from an array and returns that element.
+// - indexOf() - returns the first index at which a given element can be found in the array, or -1 if it is not present.
+// - lastIndexOf() - returns the last index at which a given element can be found in the array, or -1 if it is not present.
+// - includes() - determines whether an array includes a certain element, returning true or false as appropriate.
+// - join() - joins all elements of an array into a string using a specified separator.
+// - slice() - extracts a section of an array and returns a new array.
+// - splice() - adds or removes elements from an array.
+// - sort() - sorts the elements of an array.
+// - reverse() - reverses the order of the elements in an array.
+
+
+
+
+
+
+
+
+
+
+</script>
 </body>
 </html>
